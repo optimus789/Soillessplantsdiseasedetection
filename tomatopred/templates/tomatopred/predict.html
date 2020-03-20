@@ -1,0 +1,336 @@
+{% load static %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Plants Agriculture Category Bootstrap Responsive Website Template | Home :: W3layouts</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords"
+        content="Plants Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!--// Meta tag Keywords -->
+
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="{% static 'tomatopred/css/bootstrap.css' %}">
+    <!-- Bootstrap-Core-CSS -->
+    <link href="{% static 'tomatopred/css/css_slider.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- banner slider -->
+    <link rel="stylesheet" href="{% static 'tomatopred/css/style.css' %}" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link href="{% static 'tomatopred/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
+
+    <!-- Web-Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+        rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Niconne&amp;subset=latin-ext" rel="stylesheet">
+    <link
+        href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+        rel="stylesheet">
+    <!-- //Web-Fonts -->
+</head>
+
+<body>
+    <div id="home">
+        <!-- header -->
+        <header class="header-style fixed-top ">
+            <div class="container">
+                <div class="header d-lg-flex justify-content-between align-items-center">
+                    <!-- logo -->
+                    <h1 class="logo float-left">
+                        <a href="{% url 'input' %}">Soilless Plants Disease Detection<i class="fa fa-pagelines"
+                                aria-hidden="true"></i>
+                        </a>
+                    </h1>
+                    <!-- //logo -->
+                    <!-- nav -->
+                    <div class="nav_w3ls">
+                        <nav>
+                            <input type="checkbox" id="drop" />
+                            <ul class="menu">
+                                <li class="active" style="margin-left: 100px;"><a href="{% url 'input' %}">Home</a></li>
+                                <li><a href="#team">Our Team</a></li>
+
+
+                                <li class="mr-0"><a href="#about">Prediction</a></li>
+
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- //nav -->
+                </div>
+            </div>
+        </header>
+        <!-- //header -->
+
+        <!-- banner -->
+        <div class="banner_w3lspvt">
+            <div class="csslider infinity" id="slider1">
+                <input type="radio" name="slides" checked="checked" id="slides_1" />
+                <input type="radio" name="slides" id="slides_2" />
+                <input type="radio" name="slides" id="slides_3" />
+                <input type="radio" name="slides" id="slides_4" />
+                <ul>
+                    <li>
+                        <div class="banner-top">
+                            <div class="container">
+                                <div class="w3layouts-banner-info text-center">
+                                    <h3 class="text-wh">Welcome to Soilless Plants Disease Detection</h3>
+                                    <p class="text-li mx-auto mt-2">We provide you an easy way to recognize the diseases
+                                        of plants !
+
+                                    </p>
+                                    <a href="#about" class="button-style scroll mt-sm-5 mt-4">Go</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner-top1">
+                            <div class="container">
+                                <div class="w3layouts-banner-info text-center">
+                                    <h3 class="text-wh">Step 1: Select the image and upload it</h3>
+                                    <p class="text-li mx-auto mt-2">Select the image from your local computer and upload
+                                        it.</p>
+                                    <a href="#about" class="button-style scroll mt-sm-5 mt-4">Go</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner-top2">
+                            <div class="container">
+                                <div class="w3layouts-banner-info text-center">
+                                    <h3 class="text-wh">Step 2: Click on Predict Button and wait</h3>
+                                    <p class="text-li mx-auto mt-2">After clicking on the Predict button wait for the
+                                        model to predict the image of leaf!</p>
+                                    <a href="#about" class="button-style scroll mt-sm-5 mt-4">Go</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner-top3">
+                            <div class="container">
+                                <div class="w3layouts-banner-info text-center">
+                                    <h3 class="text-wh">Last Step: Watch out for the output</h3>
+                                    <p class="text-li mx-auto mt-2" style="font-size: 20px;color:white;">The result will
+                                        show the probability of diseases the leaf can be infected with, it will show two
+                                        names one with highest probability and the other with less!</p>
+                                    <a href="#about" class="button-style scroll mt-sm-5 mt-4">Go</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="arrows">
+                    <label for="slides_1"></label>
+                    <label for="slides_2"></label>
+                    <label for="slides_3"></label>
+                    <label for="slides_4"></label>
+                </div>
+            </div>
+            <div class="icon-w3">
+                <a href="#about" class="scroll">
+                    <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <!-- //banner -->
+    </div>
+    <!-- //main -->
+
+    <!-- about -->
+    <section class="about" id="about">
+        <div class="container" style="">
+            <div class="row">
+                <div class="col-lg-4 about-left-w3pvt offset-lg-1">
+                    <div class="main-img">
+                        <img src="{% static 'tomatopred/images/ab2.jpg' %}" alt="" class="img-fluid pos-aboimg2">
+                    </div>
+                </div>
+                <div class="col-lg-6 about-right offset-lg-1">
+                    <h4 class="sub-tittle-w3layouts let">About Us</h4>
+                    <h3 class="tittle-w3layouts text-uppercase pr-lg-5 mt-2">Duis aute irure olor in cillum solore</h3>
+                    <p class="mt-4 mb-5">Lorem ipsum dolor sit amet Neque porro quisquam est qui dolorem Lorem int ipsum
+                        dolor sit
+                        amet
+                        when an unknown printer took a galley of type.Vivamus id tempor felis.</p>
+                    <ul class="author list-unstyled d-flex">
+                        <li><img class="img-fluid rounded-circle" src="{% static 'tomatopred/images/te1.jpg' %}" alt="">
+                        </li>
+                        <li class="ml-4 mt-4"><span>Admin Name</span>Comany Name</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about -->
+
+    <!-- services -->
+    <div class="serives-agile py-5" id="services">
+        <div class="container py-xl-5 py-lg-3">
+            <div class="row support-bottom text-center">
+                <div class="col-md-4 services-w3ls-grid">
+                    <i class="fa fa-envira" aria-hidden="true"></i>
+                    <h4 class="text-wh text-uppercase mt-md-5 mt-4 mb-3">Feature Extraction</h4>
+                    <p>The trained model understands the features of the given leaf by the user and extracts those
+                        information and predict the disease accordingly</p>
+                </div>
+                <div class="col-md-4 services-w3ls-grid my-md-0 my-4">
+                    <i class="fa fa-tree" aria-hidden="true"></i>
+                    <h4 class="text-wh text-uppercase mt-md-5 mt-4 mb-3">Edge Detection</h4>
+                    <p>One of the trained model also understands the shapes and edges of the given leaf, some disease
+                        are easily recognized by their non-regular shapes</p>
+                </div>
+                <div class="col-md-4 services-w3ls-grid">
+                    <i class="fa fa-pagelines" aria-hidden="true"></i>
+                    <h4 class="text-wh text-uppercase mt-md-5 mt-4 mb-3">Good Prediction Rate</h4>
+                    <p>Both the trained models compute the input and predict two output one with feature extraction and
+                        second with the edge or shape detection thus giving high accuracy and correct predictions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //services -->
+
+
+    <!-- team -->
+    <div class="team py-5" id="team">
+        <div class="container py-xl-5 py-lg-3">
+            <h3 class="w3ls-title text-da text-center font-weight-bold mb-5 pb-xl-4">Our <span
+                    class="font-weight-light">Team</span></h3>
+            <div class="row team-bottom pt-4 text-center">
+                <div class="col-lg-3 col-sm-6 team-grid">
+                    <img src="{% static 'tomatopred/images/user.png' %}" class=" img-fluid" alt="">
+                    <div class="caption">
+                        <div class="team-text">
+                            <h4>Name 1</h4>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-facebook f1" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-twitter f2" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-google-plus f3" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 team-grid mt-sm-0 mt-5">
+                    <img src="{% static 'tomatopred/images/user.png' %}" class=" img-fluid" alt="">
+                    <div class="caption">
+                        <div class="team-text">
+                            <h4>Name 2</h4>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-facebook f1" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-twitter f2" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-google-plus f3" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 team-grid mt-lg-0 mt-5">
+                    <img src="{% static 'tomatopred/images/user.png' %}" class=" img-fluid" alt="">
+                    <div class="caption">
+                        <div class="team-text">
+                            <h4>Name 3</h4>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-facebook f1" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-twitter f2" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-google-plus f3" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 team-grid  mt-lg-0 mt-5">
+                    <img src="{% static 'tomatopred/images/user.png' %}" class=" img-fluid" alt="">
+                    <div class="caption">
+                        <div class="team-text">
+                            <h4>Name 4 </h4>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-facebook f1" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-twitter f2" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-google-plus f3" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //team -->
+
+
+
+
+    <!-- move top icon -->
+    <a href="#home" class="move-top text-center"></a>
+    <!-- //move top icon -->
+
+</body>
+
+</html>
