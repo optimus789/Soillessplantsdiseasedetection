@@ -1,136 +1,54 @@
 from django.shortcuts import render
-#import tensorflow as tf
+import tensorflow as tf
 import numpy as np
 import os
 import json
 from django.core.files.storage import default_storage
 from django.utils.datastructures import MultiValueDictKeyError
 from django.conf import settings
-#from tensorflow.keras.preprocessing import image
+from tensorflow.keras.preprocessing import image
 
 #testingdirect = "F://xampp//htdocs//upload"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-testingdirect = "media"
+testingdirect = os.path.join(BASE_DIR,'media')
 
 
-#model = tf.keras.models.load_model('tomatoaugwithcnn2.h5',compile=False)
-#model2 = tf.keras.models.load_model('tomatoaugwithoutcnn2.h5',compile=False)
+model = tf.keras.models.load_model(os.path.join(BASE_DIR,'trainedmodels','tomatoaugwithcnn2.h5'),compile=False)
+model2 = tf.keras.models.load_model(os.path.join(BASE_DIR,'trainedmodels','tomatoaugwithoutcnn2.h5'),compile=False)
 
 # Create your views here.
-name = ['Bacterial Spot', 'Early Blight', 'Healthy', 'Late Blight', 'Leaf Mold', 'Septoria Leaf Spot', 'Spider Mites Two-Spotted Spider Mite', 'Target Spot', 'Tomato Mosaic Virus', 'Tomato Yellow Leaf Curl Virus']
+name = ['Bacterial Spot', 'Early Blight', 'Healthy', 'Late Blight', 'Leaf Mold', 'Septoria Leaf Spot', 'Spider Mites Two-Spotted Spider Mite', 'Target Spot', 'Mosaic Virus', 'Yellow Leaf Curl Virus']
 
 
 def titlename(arr):  
-    loc = np.where(arr[i] == np.amax(arr[i]))
+    loc = np.where(arr[0] == np.amax(arr[0]))
     x = np.array(loc, dtype=np.int64)
     y = x[0][0]
     return name[y]
 
+def floatconv(arr):
+    arr2=[]
+    for i in range(10):
+        arr2.append(arr[0][i])
+    return arr2
 
-def predict(request):
-    '''os.remove('media/upload/uploads.jpg')
-    #save_path = os.path.join(settings.MEDIA_ROOT, 'uploads',request.FILES['file'])
+# this function does the work of above function but it will give an average of prediction of  both the models and then the resulted model will be given as a result 
+def finpred(imgs,model,new_model):
+    
+    pred1 = model.predict(imgs)
+    
+    pred2 = new_model.predict(imgs)
+    
+    final_pred = pred2
+    
+    for j in range(10):            
+        final_pred[0][j] = max(float(pred1[0][j]),float(pred2[0][j]))
+    
+    final_pred=floatconv(final_pred)
+    print(final_pred)
 
-    path = default_storage.save("upload/uploads.jpg", request.FILES['file'])
-    os.remove('media/data_file.json')
-
-    testing_generator = tf.keras.preprocessing.image.ImageDataGenerator(
-        rescale=1. / 255).flow_from_directory(testingdirect,
-                                              target_size=(299, 299),
-                                              batch_size=1)
-    imgs, labels = next(testing_generator)
-
-    pred = new_model.predict(imgs)
-
-    name1 = []
-    value = []
-    arr2 = []
-    serv = []
-
-    final = pred[0]
-
-    for j in range(3):
-        for i in range(101):
-            if (float(final[i]) == np.amax(final)):
-                name1.append(name[i])
-                value.append(final[i] * 100)
-                final[i] = 0
-                break
-
-    nutrvalall = []
-
-    for i in range(3):
-
-        a = fs.foods_search(name1[i].replace("_", " "))
-        try:
-            arr2 = a[0]['food_description'].split('-')
-            serv.append(arr2[0])
-            nutrvalall.append(arr2[1].split('|'))
-
-        except:
-            arr2 = a['food_description'].split('-')
-            serv.append(arr2[0])
-            nutrvalall.append(arr2[1].split('|'))
-
-    nutr = []
-    d = []
-
-    for j in range(3):
-        for i in range(4):
-            arr2 = str(nutrvalall[j][i].split(':')[1])
-
-            d.append(arr2)
-        nutr.append(d)
-        d = []
-    """var text = '{"employees":[' +
-    '{"firstName":"John","lastName":"Doe" },' +
-    '{"firstName":"Anna","lastName":"Smith" },' +
-    '{"firstName":"Peter","lastName":"Jones" }]}';
-    """
-
-    response = {
-        'prediction': [
-            {
-                "Name": name1[0],
-                "Value": value[0],
-                "Serving": serv[0],
-                "Calories": nutr[0][0],
-                "Fat": nutr[0][1],
-                "Carbs": nutr[0][2],
-                "Protein": nutr[0][3]
-            },
-            {
-                "Name": name1[1],
-                "Value": value[1],
-                "Serving": serv[1],
-                "Calories": nutr[1][0],
-                "Fat": nutr[1][1],
-                "Carbs": nutr[1][2],
-                "Protein": nutr[1][3]
-            },
-            {
-                "Name": name1[2],
-                "Value": value[2],
-                "Serving": serv[2],
-                
-                "Calories": nutr[2][0],aq
-                "Fat": nutr[2][1],
-                "Carbs": nutr[2][2],
-                "Protein": nutr[2][3]
-            },
-        ]
-    }
-    cont = str(response)
-
-    save_path = os.path.join(settings.STATIC_ROOT, 'static')
-
-    with open("media/data_file.json", "w+") as write_file:
-        json.dump(response, write_file)
-
-    a = "'" + cont.replace("'", '"') + "'"
-
-    context = {'resultjson': a}'''
-    return render(request, 'tomatopred/predict.html')
+    return final_pred
 
 def filename(path):
     count = 0
@@ -138,27 +56,38 @@ def filename(path):
     for i in a:
         count+=1
 
-    upload_name = str('upload')+str(count)+str('.jpg')
+    upload_name = str('uploads')+str(count)+str('.jpg')
+    return upload_name
 
 
 def imgin(request):
     contex={}
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    print(BASE_DIR)
     media_dir = os.path.join(BASE_DIR, 'media')
+    print(media_dir)
     upload_name=filename(media_dir)
     print("no if")
-    if(os.listdir(os.path.join(media_dir,'upload'))!=None):
-        os.rename(os.path.join(media_dir,'upload','uploads.jpg'),os.path.join(media_dir,'oldfiles',upload_name))
         
     if request.method=='POST':
         print("in if")
         try:
+            
+            if(os.path.exists(os.path.join(media_dir,'upload',"uploads.jpg"))):
+                os.rename(os.path.join(media_dir,'upload','uploads.jpg'),os.path.join(media_dir,'oldfiles',upload_name))
+
             path = default_storage.save("upload/uploads.jpg", request.FILES['file'])
-            name2 = "Correct file uploaded"
-            context = {'result': name2}
+            print("Testing Directory: ",testingdirect)
+            testing_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255).flow_from_directory(testingdirect,target_size=(256, 256),batch_size=1,classes=['upload'])
+            imgs, labels = next(testing_generator)
+            name2 = titlename(finpred(imgs,model,model2))
+            context = {'result': name2,'flag':True}
+            return render(request, 'tomatopred/predict.html',context)
         except MultiValueDictKeyError:
             name2 = "Wrong File OR No File uploaded"
-            context = {'result': name2}
+            context = {'result': name2,'flag':False}
+            return render(request, 'tomatopred/predict.html',context)
+
     else:
         context = {'result': None}
-    return render(request, 'tomatopred/predict.html',context)
+        return render(request, 'tomatopred/predict.html',context)
+    
