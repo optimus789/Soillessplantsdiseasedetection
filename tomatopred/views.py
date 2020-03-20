@@ -22,7 +22,7 @@ name = ['Bacterial Spot', 'Early Blight', 'Healthy', 'Late Blight', 'Leaf Mold',
 
 
 def titlename(arr):  
-    loc = np.where(arr[0] == np.amax(arr[0]))
+    loc = np.where(arr == np.amax(arr))
     x = np.array(loc, dtype=np.int64)
     y = x[0][0]
     return name[y]
@@ -88,6 +88,6 @@ def imgin(request):
             return render(request, 'tomatopred/predict.html',context)
 
     else:
-        context = {'result': None}
+        context = {'result': None, 'flag':False}
         return render(request, 'tomatopred/predict.html',context)
     

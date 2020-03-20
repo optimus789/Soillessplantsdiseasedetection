@@ -168,13 +168,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="row">
                 <div class="col-lg-4 about-left-w3pvt offset-lg-1">
                     <div class="main-img">
+                        {% if flag %}
+                        <img src="media/upload/uploads.jpg" id="pos-aboimg2" alt="" class="img-fluid">
+                        {% else %}
                         <img src="{% static 'tomatopred/images/ab2.jpg' %}" id="pos-aboimg2" alt="" class="img-fluid">
+                        {% endif %}
+
+
+
                         <img id='img-upload1' class="img-fluid" />
                         <form class="" enctype="multipart/form-data" action="{% url 'input' %}" method="POST">
                             {% csrf_token %}
 
-                            <label for="imgInp" class="mb-3">Leaf Image with Plain Background:</label>
-                            {{result}}
+                            {% if flag %}
+                            <label for="imgInp" class="mb-3">If you want to test extra images: </label>
+                            {% else %}
+                            <label for="imgInp" class="mb-3">Please Give a leaf image as input: </label>
+                            {% endif %}
+
+
+
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-btn">
@@ -194,6 +207,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     </div>
                 </div>
+                {% if flag %}
+                <div class="col-lg-6 about-right offset-lg-1" style="margin-top: 90px;">
+                    <h4 class="sub-tittle-w3layouts let" style="font-size: 25px;">The Model has predicted your given
+                        image as: </h4>
+
+                    <p class="mt-4 mb-5">
+                        <span style="font-size: 30px;color: black;">Tomato {{result}}</span>
+                    </p>
+
+                </div>
+                {% else %}
+
                 <div class="col-lg-6 about-right offset-lg-1" style="margin-top: 90px;">
                     <h4 class="sub-tittle-w3layouts let" style="font-size: 25px;">Instructions while uploading:</h4>
 
@@ -208,6 +233,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </p>
 
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>
