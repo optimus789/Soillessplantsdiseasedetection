@@ -123,6 +123,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <h3 class="text-wh">Step 2: Click on Predict Button and wait</h3>
                                     <p class="text-li mx-auto mt-2">After clicking on the Predict button wait for the
                                         model to predict the image of leaf!</p>
+
                                     <a href="#about" class="button-style scroll mt-sm-5 mt-4">Go</a>
                                 </div>
                             </div>
@@ -150,7 +151,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
             </div>
             <div class="icon-w3">
-                <a href="#about" class="scroll">
+                <a href="#about" class="scroll" style="margin-left: 50%;">
                     <i class="fa fa-angle-double-down" aria-hidden="true"></i>
                 </a>
             </div>
@@ -167,43 +168,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="row">
                 <div class="col-lg-4 about-left-w3pvt offset-lg-1">
                     <div class="main-img">
-                        <img src="{% static 'tomatopred/images/ab2.jpg' %}" id=" pos-aboimg2" alt="" class="img-fluid">
-                        <form class="" action="{% url 'input' %}" method="POST">
+                        <img src="{% static 'tomatopred/images/ab2.jpg' %}" id="pos-aboimg2" alt="" class="img-fluid">
+                        <img id='img-upload1' class="img-fluid" />
+                        <form class="" enctype="multipart/form-data" action="{% url 'input' %}" method="POST">
                             {% csrf_token %}
 
-                            <label for="imgInp">Leaf Image with Plain Background:</label>
-
+                            <label for="imgInp" class="mb-3">Leaf Image with Plain Background:</label>
+                            {{result}}
                             <div class="form-group">
-
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                         <span class="btn btn-default btn-file">
-                                            Browse… <input type="file" id="imgInp1">
+                                            <input type="file" name="file" id="imgInp1">
                                         </span>
                                     </span>
-                                    <input type="text" class="form-control" readonly>
+
                                 </div>
-                                <img id='img-upload1' style="width: 300px;" />
+
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-success" type="submit">Add Item</button>
+                                <button class="btn btn-success" style="margin-left: 100px;"
+                                    type="submit">Predict</button>
                             </div>
                         </form>
 
                     </div>
                 </div>
-                <div class="col-lg-6 about-right offset-lg-1">
-                    <h4 class="sub-tittle-w3layouts let">About Us</h4>
-                    <h3 class="tittle-w3layouts text-uppercase pr-lg-5 mt-2">Duis aute irure olor in cillum solore</h3>
-                    <p class="mt-4 mb-5">Lorem ipsum dolor sit amet Neque porro quisquam est qui dolorem Lorem int ipsum
-                        dolor sit
-                        amet
-                        when an unknown printer took a galley of type.Vivamus id tempor felis.</p>
-                    <ul class="author list-unstyled d-flex">
-                        <li><img class="img-fluid rounded-circle" src="{% static 'tomatopred/images/te1.jpg' %}" alt="">
-                        </li>
-                        <li class="ml-4 mt-4"><span>Admin Name</span>Comany Name</li>
-                    </ul>
+                <div class="col-lg-6 about-right offset-lg-1" style="margin-top: 90px;">
+                    <h4 class="sub-tittle-w3layouts let" style="font-size: 25px;">Instructions while uploading:</h4>
+
+                    <p class="mt-4 mb-5">
+                        <ul style="font-size: 20px;">
+                            <li>The image background should be plain as instructed in the given image</li>
+                            <li>The image should be taken in well lit condition</li>
+                            <li>Image should have the extension as jpg,png or jpeg</li>
+                        </ul>
+                        <span style="font-size: 20px;">After uploading the image press the predict button to see the
+                            results.</span>
+                    </p>
+
                 </div>
             </div>
         </div>
@@ -372,12 +375,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             var input = $(this).parents('.input-group').find(':text'),
                 log = label;
 
-            if (input.length) {
-                input.val(log);
-            } else {
-                if (log) alert(log);
-            }
-
         });
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -385,6 +382,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 reader.onload = function (e) {
                     $('#img-upload1').attr('src', e.target.result);
+                    $("#img-upload1").show();
+                    $("#pos-aboimg2").hide();
                 }
 
                 reader.readAsDataURL(input.files[0]);

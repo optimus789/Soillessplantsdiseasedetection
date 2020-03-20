@@ -133,8 +133,10 @@ def predict(request):
 
 
 def imgin(request):
-    contex={}
-    if request.FILES:
+    contex={}  
+    print("no if")
+    if request.method=='POST':
+        print("in if")
         path = default_storage.save("upload/uploads.jpg", request.FILES['file'])
         name2 = titlename(pred)
         context = {'result': name2}

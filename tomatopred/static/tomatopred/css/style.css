@@ -742,12 +742,11 @@ a.button-style:hover {
     margin-bottom: 50px;
     box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.08), 0 5px 8px 0 rgba(0, 0, 0, 0.12), 0 1px 14px 0 rgba(0, 0, 0, 0.06);
 }
-#pos-aboimg1{
+#img-upload1{
     display: none;
 }
 #pos-aboimg2 {
-    margin-top: 24%;
-    
+    display:block;
 }
 
 /* about right */
