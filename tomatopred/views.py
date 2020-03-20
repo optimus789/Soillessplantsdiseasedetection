@@ -1,11 +1,12 @@
 from django.shortcuts import render
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 import os
 import json
 from django.core.files.storage import default_storage
+from django.utils.datastructures import MultiValueDictKeyError
 from django.conf import settings
-from tensorflow.keras.preprocessing import image
+#from tensorflow.keras.preprocessing import image
 
 #testingdirect = "F://xampp//htdocs//upload"
 
@@ -131,15 +132,33 @@ def predict(request):
     context = {'resultjson': a}'''
     return render(request, 'tomatopred/predict.html')
 
+def filename(path):
+    count = 0
+    a = os.listdir(os.path.join(path,'oldfiles'))
+    for i in a:
+        count+=1
+
+    upload_name = str('upload')+str(count)+str('.jpg')
+
 
 def imgin(request):
-    contex={}  
+    contex={}
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    media_dir = os.path.join(BASE_DIR, 'media')
+    upload_name=filename(media_dir)
     print("no if")
+    if(os.listdir(os.path.join(media_dir,'upload'))!=None):
+        os.rename(os.path.join(media_dir,'upload','uploads.jpg'),os.path.join(media_dir,'oldfiles',upload_name))
+        
     if request.method=='POST':
         print("in if")
-        path = default_storage.save("upload/uploads.jpg", request.FILES['file'])
-        name2 = titlename(pred)
-        context = {'result': name2}
+        try:
+            path = default_storage.save("upload/uploads.jpg", request.FILES['file'])
+            name2 = "Correct file uploaded"
+            context = {'result': name2}
+        except MultiValueDictKeyError:
+            name2 = "Wrong File OR No File uploaded"
+            context = {'result': name2}
     else:
         context = {'result': None}
     return render(request, 'tomatopred/predict.html',context)
