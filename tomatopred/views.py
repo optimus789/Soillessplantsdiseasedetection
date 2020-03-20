@@ -133,4 +133,11 @@ def predict(request):
 
 
 def imgin(request):
-    return render(request, 'tomatopred/predict.html')
+    contex={}
+    if request.FILES:
+        path = default_storage.save("upload/uploads.jpg", request.FILES['file'])
+        name2 = titlename(pred)
+        context = {'result': name2}
+    else:
+        context = {'result': None}
+    return render(request, 'tomatopred/predict.html',context)
